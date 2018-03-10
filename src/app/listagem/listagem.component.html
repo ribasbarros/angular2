@@ -1,0 +1,32 @@
+<header class="jumbotron">
+        <img src="assets/img/logo.png" alt="{{titulo}}" title="{{titulo}}">
+    </header>
+    
+    <main class="container">
+        
+        <div class="row" *ngIf="mensagem">
+            <div class="col-sm-12">
+                <p class="alert alert-success">
+                    {{mensagem}}
+                </p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-12">
+                <form class="input-group">
+                    <span class="input-group-prepend">
+                        <a routerLink="/cadastro" class="btn btn-primary">Nova Foto</a>
+                    </span>
+                    <input type="text" class="form-control">
+                </form>
+            </div>
+        </div>
+        
+        <div class="row">
+            <painel *ngFor="let foto of fotos" [titulo]="foto.titulo" class="col-md-2">
+                <a [routerLink]="['/cadastro', foto._id]"><foto [url]="foto.url" [titulo]="foto.titulo"></foto></a>
+                <button (click)="apagar(foto._id)" class="btn btn-danger">Remover</button>
+            </painel>
+        </div>
+    </main>

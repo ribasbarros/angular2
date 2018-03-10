@@ -1,0 +1,39 @@
+<header class="jumbotron">
+    <h1>cadastro de fotos</h1>
+</header>
+<main class="container">
+
+    <div class="row" *ngIf="mensagem.texto">
+        <div class="col-md-12">
+            <mensagem [texto]="mensagem.texto" [tipo]="mensagem.tipo"></mensagem>
+        </div>
+    </div>
+
+    <div class="row">
+        <form class="col-md-7" (ngSubmit)="salvar()">
+            <div class="form-group">
+                <label for="">Título</label>
+                <input [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">URL</label>
+                <input [(ngModel)]="foto.url" name="url" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Descrição</label>
+                <input [(ngModel)]="foto.descricao" name="descricao" type="text" class="form-control">
+            </div>
+
+            <a routerLink="/" class="btn btn-secondary">Voltar</a>
+            <button class="btn btn-primary">Gravar</button>
+        </form>
+
+        <aside class="col-md-5">
+            <painel [titulo]="foto.titulo">
+                <foto [url]="foto.url" [titulo]="foto.titulo"></foto>
+            </painel>
+        </aside>
+
+    </div>
+
+</main>
