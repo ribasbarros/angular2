@@ -32,6 +32,9 @@ export class CadastroComponent implements OnInit {
       this.servico.atualizar(this.foto).subscribe( mensagemServico=>{
         this.mensagem.texto = mensagemServico.texto
         this.mensagem.tipo = mensagemServico.tipo
+
+        setTimeout(() => this.roteador.navigate(['']), 3000)
+
       })
     }
     else{
@@ -40,6 +43,9 @@ export class CadastroComponent implements OnInit {
           response => {
             this.mensagem.texto = response.texto
             this.mensagem.tipo = response.tipo
+
+            this.foto = new FotoComponent()
+            setTimeout(() => this.mensagem = new MensagemComponent(), 3000)
           }
       )
     }

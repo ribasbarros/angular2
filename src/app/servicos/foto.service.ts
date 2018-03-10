@@ -26,7 +26,7 @@ export class FotoService{
                         })
     }
 
-    deletar(id: String) : Observable<Object>{
+    deletar(id: String) : Observable<MensagensServico>{
         return this.api.delete(`${url}/${id}`).map(() => {
             return new MensagensServico(`${id} excluido com sucesso!`, `success`)
         })

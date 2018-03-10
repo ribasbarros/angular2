@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FotoService } from "../servicos/foto.service";
 import { FotoComponent } from '../foto/foto.component';
+import { MensagemComponent } from '../mensagem/mensagem.component';
 
 @Component({
   selector: 'listagem',
@@ -11,7 +12,8 @@ export class ListagemComponent implements OnInit {
 
   titulo = "Smiles"
   fotos: FotoComponent[] = []
-  mensagem
+  mensagem = new MensagemComponent()
+  pesquisar
 
   constructor(private servico: FotoService){
     servico.listar().subscribe(
@@ -25,11 +27,11 @@ export class ListagemComponent implements OnInit {
 
   apagar(id: String){
     this.servico.deletar(id).subscribe(
-      () => this.fotos = this.fotos.filter(foto => !(foto._id === id))
-    )
-    this.mensagem = `${id} apagado com sucesso!`
-
-    setTimeout( () => this.mensagem='' , 2000)
+      (mensagemServico) => {
+        this.fotos = this.fotos.filter(foto => !(foto._id === id))
+        this.mensagem.texto = mensagemServico.texto
+        this.mensagem.tipo = mensagemServico.tipo
+        setTimeout(() => this.mensagem = new MensagemComponent(), 3000)
+    })
   }
-
 }
