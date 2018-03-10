@@ -10,20 +10,31 @@
     </div>
 
     <div class="row">
-        <form #formCadastro="ngForm" class="col-md-7" (ngSubmit)="salvar()">
+        <form [formGroup]="formCadastro" class="col-md-7" (ngSubmit)="salvar()">
             <div class="form-group">
                 <label for="">Título</label>
-                <input #titulo="ngModel" required [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control">
-                <mensagem *ngIf="titulo.invalid && titulo.touched" texto="Titulo invalido" tipo="danger"></mensagem>
+                <input formControlName="titulo" [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control">
+
+                <div *ngIf="formCadastro.controls.titulo.errors">
+                    <mensagem 
+                        *ngIf="formCadastro.controls.titulo.errors.required && formCadastro.controls.titulo.touched" 
+                        texto="Titulo invalido" 
+                        tipo="danger"></mensagem>
+                    <mensagem 
+                        *ngIf="formCadastro.controls.titulo.errors.minlength && formCadastro.controls.titulo.touched" 
+                        texto="Digite pelo menos {{formCadastro.controls.titulo.errors.minlength.requiredLength}} digitos" 
+                        tipo="danger"></mensagem>
+                </div>
+                
             </div>
             <div class="form-group">
                 <label for="">URL</label>
-                <input #url="ngModel" required [(ngModel)]="foto.url" name="url" type="text" class="form-control">
-                <mensagem *ngIf="url.invalid && url.touched" texto="URL invalido" tipo="danger"></mensagem>
+                <input formControlName="url" [(ngModel)]="foto.url" name="url" type="text" class="form-control">
+                <mensagem *ngIf="formCadastro.controls.url.invalid && formCadastro.controls.url.touched" texto="URL invalido" tipo="danger"></mensagem>
             </div>
             <div class="form-group">
                 <label for="">Descrição</label>
-                <textarea [(ngModel)]="foto.descricao" name="descricao" type="text" class="form-control">
+                <textarea formControlName="descricao" [(ngModel)]="foto.descricao" name="descricao" type="text" class="form-control">
                 </textarea>
             </div>
 

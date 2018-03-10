@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FotoModule } from "./foto/foto.module"
@@ -12,6 +12,7 @@ import { roteamento } from "./app.routes";
 import { FotoService } from "./servicos/foto.service";
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { FiltroPorTitulo } from "./listagem/filtroPorTitulo.pipe";
+import { BotaoComponent } from './botao/botao.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,14 @@ import { FiltroPorTitulo } from "./listagem/filtroPorTitulo.pipe";
     CadastroComponent,
     ListagemComponent,
     MensagemComponent,
-    FiltroPorTitulo
+    FiltroPorTitulo,
+    BotaoComponent
   ],
   imports: [
     BrowserModule, 
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     FotoModule,
     PainelModule,
     roteamento
